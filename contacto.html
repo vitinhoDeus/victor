@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-header">
+      <h2 class="logo">victor molina</h2>
+      <button class="nav-toggle" id="nav-toggle">&#9776;</button>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="proyectos.html">Proyectos</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Contáctame</h1>
+    <form id="contact-form">
+      <label>Email:
+        <input type="email" name="email" required />
+      </label>
+      <label>Mensaje:
+        <textarea name="message" required></textarea>
+      </label>
+      <button type="submit">Enviar</button>
+    </form>
+  </main>
+
+  <script>
+
+    (function() {
+      emailjs.init("7vq5AXkJETnYyhzwH"); 
+    })();
+
+
+    document.getElementById('contact-form')?.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      emailjs.sendForm('service_sh20v8e', 'template_kioa9y3', this)
+        .then(() => {
+          alert('Mensaje enviado correctamente!');
+          this.reset();
+        }, (error) => {
+          console.error('Error al enviar:', error);
+          alert('Hubo un error al enviar el mensaje.');
+        });
+    });
+  </script>
+</body>
+</html>
